@@ -13,18 +13,16 @@ function res = fem2d_int_lin_f(geo_coord, phi_id)
 	n_quadrature = size(w, 2);
 	
 	res = 0;
-	for ix = 1 : n_quadrature
-		for iy = 1 : n_quadrature
-			[f_x, f_y] = fem2d_tri_xi_eta_to_x_y(qx(ix), qy(iy), geo_coord);
-			f_xy = fem2d_rhs_f(f_x, f_y);
-			
-			dtm = fem2d_tri_lin_det(qy(ix), qy(iy), geo_coord);
-			
-			N(1) = 1.0 - qx(ix) - qy(iy);
-			N(2) = qx(ix);
-			N(3) = qy(iy);
-			
-			res = res + dtm * f_xy * N(phi_id) * w(ix) * w(iy);
-		end
+	for iq = 1 : n_quadrature
+		[f_x, f_y] = fem2d_tri_xi_eta_to_x_y(qx(iq), qy(iq), geo_coord);
+		f_xy = fem2d_rhs_f(f_x, f_y);
+		
+		dtm = fem2d_tri_lin_det(qy(iq), qy(iq), geo_coord);
+		
+		N(1) = 1.0 - qx(iq) - qy(iq);
+		N(2) = qx(iq);
+		N(3) = qy(iq);
+		
+		res = res + dtm * f_xy * N(phi_id) * w(iq);
 	end
 end

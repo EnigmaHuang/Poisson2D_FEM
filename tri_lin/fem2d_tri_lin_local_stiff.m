@@ -17,11 +17,9 @@ function k = fem2d_tri_lin_global_stiff(x)
 	n_quadrature = size(w, 2);
 	
 	% Numerical integral using Gauss quadrature
-	for ix = 1 : n_quadrature
-		for iy = 1 : n_quadrature
-			[sh, dtm] = fem2d_tri_lin_shape(qx(ix), qy(iy), x);
-			d_N = sh(1 : 2, :);
-			k = k + d_N' * d_N * dtm * w(ix) * w(iy);
-		end
+	for iq = 1 : n_quadrature
+		[sh, dtm] = fem2d_tri_lin_shape(qx(iq), qy(iq), x);
+		d_N = sh(1 : 2, :);
+		k = k + d_N' * d_N * dtm * w(iq);
 	end
 end
