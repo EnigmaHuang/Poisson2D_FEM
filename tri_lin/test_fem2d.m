@@ -22,15 +22,20 @@ function u = test_fem2d(h)
 	b = fem2d_tri_lin_rhs(coords, ien, gpie);
 	
 	% Apply the Dirichlet boundary condition
-	n_bgp = max(size(bgp));
-	for i = 1 : n_bgp
-		bgp_id = bgp(i);
-		K(bgp_id, :) = 0;
-		K(bgp_id, bgp_id) = 1;
-		bv_x = coords(bgp_id, 1);
-		bv_y = coords(bgp_id, 2);
-		bv_val = fem2d_bv_g(bv_x, bv_y);
-		b(bgp_id) = bv_val;
+	% If we want to use Dirichlet boundary condition, set use_dirichlet_bc = 1,
+	% and set poisson2d_robin_bc_alpha() = 0, poisson2d_robin_bc_g() = 0
+	use_dirichlet_bc = 0;
+	if (use_dirichlet_bc == 1)
+		n_bgp = max(size(bgp));
+		for i = 1 : n_bgp
+			bgp_id = bgp(i);
+			K(bgp_id, :) = 0;
+			K(bgp_id, bgp_id) = 1;
+			bv_x = coords(bgp_id, 1);
+			bv_y = coords(bgp_id, 2);
+			bv_val = poisson2d_dirichlet_bc_g(bv_x, bv_y);
+			b(bgp_id) = bv_val;
+		end
 	end
 	
 	% Solve the linear system

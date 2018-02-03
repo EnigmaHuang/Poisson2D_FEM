@@ -1,5 +1,5 @@
-function res = bv_g(x, y)
-% Dirichlet boundary condition
+function res = poisson2d_dirichlet_bc_g(x, y)
+% Dirichlet boundary condition $u|_{\partial \Omega} = g$
 
 	if (abs(y - 0) < eps) 
 		res = x;          % g(x, 0) = x

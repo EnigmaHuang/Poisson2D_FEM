@@ -15,7 +15,7 @@ function res = fem2d_int_lin_f(geo_coord, phi_id)
 	res = 0;
 	for iq = 1 : n_quadrature
 		[f_x, f_y] = fem2d_tri_xi_eta_to_x_y(qx(iq), qy(iq), geo_coord);
-		f_xy = fem2d_rhs_f(f_x, f_y);
+		f_xy = poisson2d_rhs_f(f_x, f_y);
 		
 		dtm = fem2d_tri_lin_det(qy(iq), qy(iq), geo_coord);
 		

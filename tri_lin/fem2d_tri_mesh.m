@@ -3,6 +3,7 @@ function [coords, ien, gpie, bgp] = fem2d_tri_mesh(x, y)
 % [IN]  x, y   : Grid point on x and y direction
 % [OUT] coords : N * 2 matrix, N is the number of grid points,
 %                each row has the x and y coordinate of a grid point
+%                and if this node is on the boundary
 % [OUT] ien    : M * 3 matrix, M is the number of quadrilateral elements,
 %                each row has 3 vertex point ids of the element, in 
 %                counter clockwise order
@@ -27,7 +28,7 @@ function [coords, ien, gpie, bgp] = fem2d_tri_mesh(x, y)
 		for ix = 1 : nx
 			% Record the coordinates of this grid point
 			icoord = (iy - 1) * nx + ix;
-			coords(icoord, :) = [x(ix) y(iy)];
+			coords(icoord, 1 : 2) = [x(ix) y(iy)];
 			
 			% Handle the element that on the top right of the current grid point
 			if ((iy < ny) && (ix < nx))
