@@ -15,6 +15,7 @@ function k = fem2d_quad_bilin_local_stiff(x)
 	w = [1, 1];
 	n_quadrature = size(q, 2);
 	
+	% In-element 2D integral for $\phi_i^{'} * \phi_j^{'}$
 	% Numerical integral using Gauss quadrature
 	for ix = 1 : n_quadrature
 		for iy = 1 : n_quadrature
@@ -23,4 +24,36 @@ function k = fem2d_quad_bilin_local_stiff(x)
 			k = k + d_N' * d_N * dtm * w(ix) * w(iy);
 		end
 	end
+	
+	% Boundary line integral for alpha(x, y)
+	k2 = zeros(4, 4);
+	if (( (x(1, 1) == 0) && (x(1, 2) == 0) ) ...  % on x == 0
+	 || ( (x(1, 1) == 1) && (x(1, 2) == 1) ) ...  % on x == 1
+	 || ( (x(2, 1) == 0) && (x(2, 2) == 0) ) ...  % on y == 0
+	 || ( (x(2, 1) == 1) && (x(2, 2) == 1) ))     % on y == 1
+		k2 = k2 + fem2d_quad_bilin_int_alpha(x, 1, 2);
+	end
+	
+	if (( (x(1, 2) == 0) && (x(1, 3) == 0) ) ...  % on x == 0
+	 || ( (x(1, 2) == 1) && (x(1, 3) == 1) ) ...  % on x == 1
+	 || ( (x(2, 2) == 0) && (x(2, 3) == 0) ) ...  % on y == 0
+	 || ( (x(2, 2) == 1) && (x(2, 3) == 1) ))     % on y == 1
+		k2 = k2 + fem2d_quad_bilin_int_alpha(x, 2, 3);
+	end
+	
+	if (( (x(1, 3) == 0) && (x(1, 4) == 0) ) ...  % on x == 0
+	 || ( (x(1, 3) == 1) && (x(1, 4) == 1) ) ...  % on x == 1
+	 || ( (x(2, 3) == 0) && (x(2, 4) == 0) ) ...  % on y == 0
+	 || ( (x(2, 3) == 1) && (x(2, 4) == 1) ))     % on y == 1
+		k2 = k2 + fem2d_quad_bilin_int_alpha(x, 3, 4);
+	end
+	
+	if (( (x(1, 4) == 0) && (x(1, 1) == 0) ) ...  % on x == 0
+	 || ( (x(1, 4) == 1) && (x(1, 1) == 1) ) ...  % on x == 1
+	 || ( (x(2, 4) == 0) && (x(2, 1) == 0) ) ...  % on y == 0
+	 || ( (x(2, 4) == 1) && (x(2, 1) == 1) ))     % on y == 1
+		k2 = k2 + fem2d_quad_bilin_int_alpha(x, 4, 1);
+	end
+	
+	k = k + k2;
 end

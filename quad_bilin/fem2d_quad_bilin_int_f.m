@@ -14,7 +14,7 @@ function res = fem2d_quad_bilin_int_f(geo_coord, phi_id)
 	for ix = 1 : 4
 		for iy = 1 : 4
 			[f_x, f_y] = fem2d_quad_xi_eta_to_x_y(q(ix), q(iy), geo_coord);
-			f_xy = fem2d_rhs_f(f_x, f_y);
+			f_xy = poisson2d_rhs_f(f_x, f_y);
 			
 			dtm = fem2d_quad_bilin_det(q(ix), q(iy), geo_coord);
 			
