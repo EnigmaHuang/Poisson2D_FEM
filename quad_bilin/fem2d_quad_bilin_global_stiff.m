@@ -18,7 +18,7 @@ function K = fem2d_quad_bilin_global_stiff(coords, ien)
 		vertex_coords = coords(elem_vertex_ids, :);
 		
 		% Transpose vertex_coords to use in fem2d_quad_bilin_local_stiff
-		k = fem2d_quad_bilin_local_stiff(vertex_coords');
+		k = fem2d_quad_bilin_unit_stiff(vertex_coords');
 		
 		% Assemble to global stiffness matrix
 		K(elem_vertex_ids, elem_vertex_ids) = K(elem_vertex_ids, elem_vertex_ids) + k;

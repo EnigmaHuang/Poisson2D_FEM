@@ -1,6 +1,6 @@
 function bb = fem2d_tri_lin_int_g(x, i, j)
 % Perform line integral $\int_{\partial \Omega} g * \phi_j d s$ on 
-% the boundary edge x(i)-->x(j) of a given triangle element
+% the boundary edge x(i)-->x(j) of a given triangular element
 % [IN]  x    : 2 * 3 matrix, the geometric coordinates of the element's nodes,
 %              first row is x coordinates, second row is y coordinates,
 %              points should be in counter clockwise order

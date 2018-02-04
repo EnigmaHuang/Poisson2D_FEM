@@ -1,9 +1,9 @@
 function K = fem2d_tri_lin_global_stiff(coords, ien)
 % Generate the global stiffness matrix for $-\nabla^2 u$ in 2D case
-% using linear basis functions and triangle elements
+% using linear basis functions and triangular elements
 % [IN]  coords : n * 2 matrix, n is the number of grid points,
 %                each row has the x and y coordinate of a grid point
-% [IN]  ien    : m * 3 matrix, m is the number of triangle elements,
+% [IN]  ien    : m * 3 matrix, m is the number of triangular elements,
 %                each row has 3 vertex point ids of the element, in 
 %                counter clockwise order
 % [OUT] K      : n * n Global stiffness matrix

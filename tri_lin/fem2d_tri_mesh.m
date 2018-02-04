@@ -1,5 +1,5 @@
-function [coords, ien, gpie, bgp] = fem2d_tri_mesh(x, y)
-% Generate triangle mesh on [0, 1] * [0, 1] for 2D FEM
+function [coords, ien, bgp] = fem2d_tri_mesh(x, y)
+% Generate triangular mesh on [0, 1] * [0, 1] for 2D FEM
 % [IN]  x, y   : Grid point on x and y direction
 % [OUT] coords : N * 2 matrix, N is the number of grid points,
 %                each row has the x and y coordinate of a grid point
@@ -7,9 +7,6 @@ function [coords, ien, gpie, bgp] = fem2d_tri_mesh(x, y)
 % [OUT] ien    : M * 3 matrix, M is the number of quadrilateral elements,
 %                each row has 3 vertex point ids of the element, in 
 %                counter clockwise order
-% [OUT] gpie   : N * 7 matrix, each row is the information of a 
-%                grid point: gpie(i, 1) is the number of elements this grid
-%                point belongs to, gpie(i, 2:1+gpie(i,1)) are the element ids 
 % [OUT] bgp    : 2 * (nx + ny - 2) vector, the ids of the grid points on the boundary
 	
 	nx = max(size(x));
@@ -20,7 +17,6 @@ function [coords, ien, gpie, bgp] = fem2d_tri_mesh(x, y)
 	
 	coords = zeros(N, 2);
 	ien    = zeros(M, 3);
-	gpie   = zeros(N, 7);
 	bgp    = zeros(2 * (nx + ny - 2), 1);
 	
 	ibgp   = 0;
@@ -51,26 +47,6 @@ function [coords, ien, gpie, bgp] = fem2d_tri_mesh(x, y)
 				ien(ielem2, 1) = icoord1;
 				ien(ielem2, 2) = icoord3;
 				ien(ielem2, 3) = icoord4;
-				
-				
-				% Mark that this element contains these vertexes
-				gpie(icoord1, 1) = gpie(icoord1, 1) + 1;
-				gpie(icoord1, 1 + gpie(icoord1, 1)) = ielem1;
-				
-				gpie(icoord2, 1) = gpie(icoord2, 1) + 1;
-				gpie(icoord2, 1 + gpie(icoord2, 1)) = ielem1;
-				
-				gpie(icoord3, 1) = gpie(icoord3, 1) + 1;
-				gpie(icoord3, 1 + gpie(icoord3, 1)) = ielem1;
-				
-				gpie(icoord1, 1) = gpie(icoord1, 1) + 1;
-				gpie(icoord1, 1 + gpie(icoord1, 1)) = ielem2;
-				
-				gpie(icoord3, 1) = gpie(icoord3, 1) + 1;
-				gpie(icoord3, 1 + gpie(icoord3, 1)) = ielem2;
-				
-				gpie(icoord4, 1) = gpie(icoord4, 1) + 1;
-				gpie(icoord4, 1 + gpie(icoord4, 1)) = ielem2;
 			end
 			
 			% Record boundary grid point

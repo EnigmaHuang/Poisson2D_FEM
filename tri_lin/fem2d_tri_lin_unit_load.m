@@ -2,8 +2,8 @@ function ub = fem2d_tri_lin_unit_load(x)
 % Use variable substitution to transform the f(x, y) and phi_i(x, y) on a
 % element to triangle (0,0)-(1,0)-(0,1), then use Gauss quadrature to integrate
 % [IN]  x  : 2 * 3 matrix, the geometric coordinates of the element's vertexes
-%                   1st row is x coordinates, 2nd row is y coordinates, 
-%                   vertexes shoule be in counter clockwise order\
+%            1st row is x coordinates, 2nd row is y coordinates, 
+%            vertexes shoule be in counter clockwise order\
 % [OUT] ub : 3 * 1 vector, integral result
 	
 	qx = [1.0/3.0, 0.6, 0.2, 0.2];

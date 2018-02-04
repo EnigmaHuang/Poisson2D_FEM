@@ -1,10 +1,10 @@
-function k = fem2d_quad_bilin_local_stiff(x)
-% Generate the local stiffness matrix for a quadrilateral element 
+function k = fem2d_quad_bilin_unit_stiff(x)
+% Generate the unit stiffness matrix for a quadrilateral element 
 % using bilinear basis functions
 % [IN]  x : 2 * 4 matrix, the geometric coordinates of the element,
 %           first row is x coordinates, second row is y coordinates,
 %           points should be in counter clockwise order
-% [OUT] k : 4 * 4 local stiffness matrix, k(i, j) = \int_{\Omega^e}
+% [OUT] k : 4 * 4 unit stiffness matrix, k(i, j) = \int_{\Omega^e}
 %           phi_{i}^{'}(x, y) phi_{j}^{'}(d, y) dx dy
 %           phi_{1, 2, 3, 4} are in counter clockwise order
 	

@@ -1,6 +1,6 @@
 function [sh, dtm] = fem2d_tri_lin_shape(qx, qy, x)
 % Generate 3 linear basis functions' information on the given quadrature point
-% in a triangle element
+% in a triangular element
 % [IN]  qx, qy   : The given quadrature point (to evaluate the function value)
 % [IN]  x        : 2 * 3 matrix, the geometric coordinates of the element,
 %                  first row is x coordinates, second row is y coordinates,

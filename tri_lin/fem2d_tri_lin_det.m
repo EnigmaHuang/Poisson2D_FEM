@@ -1,6 +1,6 @@
 function dtm = fem2d_tri_lin_det(qx, qy, x)
 % Generate the determinant of the Jacobian on the given quadrature point
-% in a triangle element (a simplified version of fem2d_tri_lin_shape)
+% in a triangular element (a simplified version of fem2d_tri_lin_shape)
 % [IN]  qx, qy   : The given quadrature point (to evaluate the function value)
 % [IN]  x        : 2 * 3 matrix, the geometric coordinates of the element,
 %                  first row is x coordinates, second row is y coordinates,

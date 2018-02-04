@@ -1,5 +1,5 @@
 function k = fem2d_tri_lin_unit_stiff(x)
-% Generate the unit stiffness matrix for a triangle element 
+% Generate the unit stiffness matrix for a triangular element 
 % using linear basis functions
 % [IN]  x : 2 * 3 matrix, the geometric coordinates of the element's nodes,
 %           first row is x coordinates, second row is y coordinates,

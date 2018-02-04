@@ -13,13 +13,13 @@ function u = test_fem2d(h)
 	ny = size(y, 2);
 	
 	% Generate the square mesh
-	[coords, ien, gpie, bgp] = fem2d_quad_mesh(x, y);
+	[coords, ien, bgp] = fem2d_quad_mesh(x, y);
 	
 	% Generate the global stiffness matrix
 	K = fem2d_quad_bilin_global_stiff(coords, ien);
 	
 	% Generate the right hand side
-	b = fem2d_quad_bilin_rhs(coords, ien, gpie);
+	b = fem2d_quad_bilin_global_load(coords, ien);
 	
 	% Apply the Dirichlet boundary condition
 	% If we want to use Dirichlet boundary condition, set use_dirichlet_bc = 1,
