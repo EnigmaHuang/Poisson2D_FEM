@@ -19,7 +19,7 @@ function u = test_fem2d(h)
 	K = fem2d_tri_lin_global_stiff(coords, ien);
 	
 	% Generate the right hand side
-	b = fem2d_tri_lin_rhs(coords, ien, gpie);
+	b = fem2d_tri_lin_global_load(coords, ien, gpie);
 	
 	% Apply the Dirichlet boundary condition
 	% If we want to use Dirichlet boundary condition, set use_dirichlet_bc = 1,

@@ -18,7 +18,7 @@ function K = fem2d_tri_lin_global_stiff(coords, ien)
 		vertex_coords = coords(elem_vertex_ids, :);
 		
 		% Transpose vertex_coords to use in local_stiff_quad
-		k = fem2d_tri_lin_local_stiff(vertex_coords');
+		k = fem2d_tri_lin_unit_stiff(vertex_coords');
 		
 		% Assemble to global stiffness matrix
 		K(elem_vertex_ids, elem_vertex_ids) = K(elem_vertex_ids, elem_vertex_ids) + k;

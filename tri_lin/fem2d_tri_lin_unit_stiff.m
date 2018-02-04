@@ -1,10 +1,10 @@
-function k = fem2d_tri_lin_local_stiff(x)
-% Generate the local stiffness matrix for a triangle element 
+function k = fem2d_tri_lin_unit_stiff(x)
+% Generate the unit stiffness matrix for a triangle element 
 % using linear basis functions
 % [IN]  x : 2 * 3 matrix, the geometric coordinates of the element's nodes,
 %           first row is x coordinates, second row is y coordinates,
 %           points should be in counter clockwise order
-% [OUT] k : 3 * 3 local stiffness matrix, k(i, j) = \int_{\Omega^e}
+% [OUT] k : 3 * 3 unit stiffness matrix, k(i, j) = \int_{\Omega^e}
 %           phi_{i}^{'}(x, y) phi_{j}^{'}(d, y) dx dy
 %           phi_{1, 2, 3} are in counter clockwise order
 	
